@@ -1,8 +1,7 @@
-import 'package:bloccc/seviye2/widget/textfieldlar.dart';
-import 'package:bloccc/seviye3/cubit/get_user_cubit.dart';
-import 'package:bloccc/seviye3/model/user_model3.dart';
+import 'package:bloccc/model/user_model3.dart';
+import 'package:bloccc/view/viewModel/kisi_update_viewModel.dart';
+import 'package:bloccc/widget/textfieldlar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class KisiSilGuncelle extends StatefulWidget {
   final UserModel3 userModel3;
@@ -12,10 +11,8 @@ class KisiSilGuncelle extends StatefulWidget {
   State<KisiSilGuncelle> createState() => _KisiEklemeSayfasiState();
 }
 
-class _KisiEklemeSayfasiState extends State<KisiSilGuncelle> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
-
+class _KisiEklemeSayfasiState extends State<KisiSilGuncelle>
+    with KisiUpdateViewModel {
   @override
   void initState() {
     super.initState();
@@ -44,16 +41,14 @@ class _KisiEklemeSayfasiState extends State<KisiSilGuncelle> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  context.read<GetUserCubit>().updateUsers(widget.userModel3.id,
-                      nameController.text, numberController.text);
-                  Navigator.pop(context);
+                  updateClick();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurpleAccent,
                   minimumSize: const Size(150, 44),
                   shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.circular(10), // Köşeleri yuvarlar
+                        BorderRadius.circular(30), // Köşeleri yuvarlar
                   ),
                 ),
                 child: const Text(
@@ -66,15 +61,14 @@ class _KisiEklemeSayfasiState extends State<KisiSilGuncelle> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.read<GetUserCubit>().deleteUsers(widget.userModel3);
-                  Navigator.pop(context);
+                  deleteClick();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
                   minimumSize: const Size(150, 44),
                   shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.circular(10), // Köşeleri yuvarlar
+                        BorderRadius.circular(30), // Köşeleri yuvarlar
                   ),
                 ),
                 child: const Text(

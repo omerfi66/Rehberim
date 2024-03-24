@@ -1,5 +1,5 @@
-import 'package:bloccc/seviye3/cubit/get_user_cubit.dart';
-import 'package:bloccc/seviye3/model/user_model3.dart';
+import 'package:bloccc/cubit/get_user_cubit.dart';
+import 'package:bloccc/model/user_model3.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,13 +72,16 @@ class _HomeEkranState extends State<HomeEkran> {
                     itemBuilder: (context, index) {
                       UserModel3 item = state[index];
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(right: 8, left: 8),
                         child: Card(
                           elevation: 3,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(35.0),
-                              side: const BorderSide(
-                                  color: Colors.purple, width: 2.0)),
+                            borderRadius: BorderRadius.circular(30.0),
+                            side: const BorderSide(
+                              color: Colors.deepPurpleAccent,
+                              width: 1.0,
+                            ),
+                          ),
                           color: Colors.white,
                           child: ListTile(
                             onTap: () {
@@ -96,7 +99,10 @@ class _HomeEkranState extends State<HomeEkran> {
                                   fontWeight: FontWeight.bold, fontSize: 18),
                             ),
                             subtitle: Text('-${item.userNumber}'),
-                            trailing: const Icon(Icons.edit),
+                            trailing: const Icon(
+                              Icons.edit,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
                       );
@@ -110,6 +116,10 @@ class _HomeEkranState extends State<HomeEkran> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor: Colors.deepPurpleAccent,
           onPressed: () {
             Navigator.push(
                 context,
@@ -117,7 +127,10 @@ class _HomeEkranState extends State<HomeEkran> {
                   builder: (context) => const KisiEklemeSayfasi(),
                 ));
           },
-          child: const Icon(Icons.group_add_outlined),
+          child: const Icon(
+            Icons.group_add_outlined,
+            color: Colors.white,
+          ),
         ));
   }
 }

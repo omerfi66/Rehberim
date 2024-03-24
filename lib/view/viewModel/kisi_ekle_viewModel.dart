@@ -1,5 +1,5 @@
-import 'package:bloccc/seviye3/cubit/get_user_cubit.dart';
-import 'package:bloccc/seviye3/view/kisi_ekleme_sayfasi.dart';
+import 'package:bloccc/cubit/get_user_cubit.dart';
+import 'package:bloccc/view/kisi_ekleme_sayfasi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,12 +1,12 @@
-import 'package:bloccc/seviye3/cubit/get_user_cubit.dart';
-import 'package:bloccc/seviye3/model/user_model3.dart';
-import 'package:bloccc/seviye3/view/home_ekrani.dart';
+import 'package:bloccc/cubit/get_user_cubit.dart';
+import 'package:bloccc/model/user_model3.dart';
+import 'package:bloccc/view/home_ekrani.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //==-=-=-=-=-=-=-=-=--==-=-=-
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
   Hive.registerAdapter(UserModel3Adapter());

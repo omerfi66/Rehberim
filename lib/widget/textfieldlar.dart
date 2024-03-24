@@ -20,7 +20,13 @@ class TextFieldlar extends StatelessWidget {
         keyboardType:
             klavyeNumber ? TextInputType.number : TextInputType.multiline,
         decoration: InputDecoration(
-            border: const OutlineInputBorder(), label: Text(label)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+
+            //borderSide: const BorderSide(),
+          ),
+          label: Text(label),
+        ),
       ),
     );
   }

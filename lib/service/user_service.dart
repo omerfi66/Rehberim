@@ -1,4 +1,4 @@
-import 'package:bloccc/seviye3/model/user_model3.dart';
+import 'package:bloccc/model/user_model3.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 

@@ -1,5 +1,5 @@
-import 'package:bloccc/seviye3/model/user_model3.dart';
-import 'package:bloccc/seviye3/service/user_service.dart';
+import 'package:bloccc/model/user_model3.dart';
+import 'package:bloccc/service/user_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetUserCubit extends Cubit<List<UserModel3>> {
