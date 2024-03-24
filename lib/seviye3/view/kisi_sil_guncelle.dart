@@ -43,34 +43,48 @@ class _KisiEklemeSayfasiState extends State<KisiSilGuncelle> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                  onPressed: () {
-                    context.read<GetUserCubit>().updateUsers(
-                        widget.userModel3.id,
-                        nameController.text,
-                        numberController.text);
-
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const HomeEkran(),
-                    //     ));
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Guncelle')),
+                onPressed: () {
+                  context.read<GetUserCubit>().updateUsers(widget.userModel3.id,
+                      nameController.text, numberController.text);
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurpleAccent,
+                  minimumSize: const Size(150, 44),
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10), // Köşeleri yuvarlar
+                  ),
+                ),
+                child: const Text(
+                  'GÜNCELLE',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent.shade100),
-                  onPressed: () {
-                    context.read<GetUserCubit>().deleteUsers(widget.userModel3);
-
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const HomeEkran(),
-                    //     ));
-                    Navigator.pop(context);
-                  },
-                  child: const Text('sil')),
+                onPressed: () {
+                  context.read<GetUserCubit>().deleteUsers(widget.userModel3);
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  minimumSize: const Size(150, 44),
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10), // Köşeleri yuvarlar
+                  ),
+                ),
+                child: const Text(
+                  'SİL',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
             ],
           )
         ],

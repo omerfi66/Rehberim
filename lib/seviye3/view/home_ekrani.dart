@@ -19,8 +19,9 @@ class _HomeEkranState extends State<HomeEkran> {
   @override
   void initState() {
     super.initState();
-    _getContacts();
-    context.read<GetUserCubit>().getAllUsers();
+    _getContacts().then((_) {
+      context.read<GetUserCubit>().getAllUsers();
+    });
   }
 
   Future<void> _getContacts() async {
@@ -73,19 +74,26 @@ class _HomeEkranState extends State<HomeEkran> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(35.0),
+                              side: const BorderSide(
+                                  color: Colors.purple, width: 2.0)),
+                          color: Colors.white,
                           child: ListTile(
                             onTap: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          KisiSilGuncelle(userModel3: item)));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        KisiSilGuncelle(userModel3: item)),
+                              );
                             },
                             leading: const Icon(Icons.person),
                             title: Text(
                               item.userName,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
                             ),
                             subtitle: Text('-${item.userNumber}'),
                             trailing: const Icon(Icons.edit),

@@ -7,22 +7,10 @@ mixin KisiEkleViewModel on State<KisiEklemeSayfasi> {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
 
-// //  Bu sayfa da yok ama olsa init state de buraya konabilirdi
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-  kaydetButonClick() {
-    context
-        .read<GetUserCubit>()
-        .saveUsers(nameController.text, numberController.text.toString());
-
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const HomeEkran(),
-    //     ));
-    Navigator.pop(context);
+  Future<void> kaydetButonClick() async {
+    await context.read<GetUserCubit>().saveUsers(
+          nameController.text,
+          numberController.text.toString(),
+        );
   }
 }
