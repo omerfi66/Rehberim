@@ -1,7 +1,7 @@
 Hello everyone,
 The guide application I made with Cubit, one of the management patterns frequently used in Flutter applications. 📱
 
-In the 'My Rehberim' application, where I use Hive as a database, it requests permission to access the phone book at the first start .🚀
+In the 'Rehberim' application, where I use Hive as a database, it requests permission to access the phone book at the first start .🚀
 
 I also created a clear architectural layout using mixin and vıewModel classes.🌐👨‍💻
 
