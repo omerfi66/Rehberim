@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ],
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'flutter bloc instance',
+          title: 'Rehberim',
           home: HomeEkran(),
         ));
   }

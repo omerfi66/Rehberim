@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "64.0.0"
+  alphabet_slider:
+    dependency: "direct main"
+    description:
+      name: alphabet_slider
+      sha256: "5a638ff5033c61fe06d2048834f2cc7bb0e18648d18bd283e10e27921a7e847e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   analyzer:
     dependency: transitive
     description:

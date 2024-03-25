@@ -22,8 +22,21 @@ class TextFieldlar extends StatelessWidget {
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
-
-            //borderSide: const BorderSide(),
+            borderSide: const BorderSide(
+                color: Colors.deepPurpleAccent,
+                width: 1.0), // Border color and thickness
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: const BorderSide(
+                color: Colors.deepPurpleAccent,
+                width: 2.0), // Focused border color and thickness
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: const BorderSide(
+                color: Colors.deepPurpleAccent,
+                width: 2.0), // Enabled border color and thickness
           ),
           label: Text(label),
         ),

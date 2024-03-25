@@ -1,3 +1,4 @@
+import 'package:alphabet_slider/alphabet_slider.dart';
 import 'package:bloccc/cubit/get_user_cubit.dart';
 import 'package:bloccc/model/user_model3.dart';
 import 'package:contacts_service/contacts_service.dart';
@@ -58,7 +59,10 @@ class _HomeEkranState extends State<HomeEkran> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            context.read<GetUserCubit>().getAllUsers();
+            //context.read<GetUserCubit>().getAllUsers();
+            _getContacts().then((_) {
+              context.read<GetUserCubit>().getAllUsers();
+            });
           },
           child: Center(
             child: BlocBuilder<GetUserCubit, List<UserModel3>>(
@@ -67,46 +71,57 @@ class _HomeEkranState extends State<HomeEkran> {
                     .toLowerCase()
                     .compareTo(b.userName.toLowerCase()));
                 if (state.isNotEmpty) {
-                  return ListView.builder(
-                    itemCount: state.length,
-                    itemBuilder: (context, index) {
-                      UserModel3 item = state[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8, left: 8),
-                        child: Card(
-                          elevation: 3,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            side: const BorderSide(
-                              color: Colors.deepPurpleAccent,
-                              width: 1.0,
+                  return Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      ListView.builder(
+                        itemCount: state.length,
+                        itemBuilder: (context, index) {
+                          UserModel3 item = state[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 28, left: 8),
+                            child: Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                side: const BorderSide(
+                                  color: Colors.deepPurpleAccent,
+                                  width: 1.0,
+                                ),
+                              ),
+                              color: Colors.white,
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            KisiSilGuncelle(userModel3: item)),
+                                  );
+                                },
+                                leading: const Icon(Icons.person),
+                                title: Text(
+                                  item.userName,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                subtitle: Text('-${item.userNumber}'),
+                                trailing: const Icon(
+                                  Icons.edit,
+                                  color: Colors.grey,
+                                ),
+                              ),
                             ),
-                          ),
-                          color: Colors.white,
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        KisiSilGuncelle(userModel3: item)),
-                              );
-                            },
-                            leading: const Icon(Icons.person),
-                            title: Text(
-                              item.userName,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
-                            subtitle: Text('-${item.userNumber}'),
-                            trailing: const Icon(
-                              Icons.edit,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+                          );
+                        },
+                      ),
+                      AlphabetSlider(
+                        onLetterSelect: _onLetterSelect,
+                        textColor: Colors.deepPurpleAccent,
+                        fontSize: 12,
+                      )
+                    ],
                   );
                 } else {
                   return const Text('Goruntulenecek kisi yok');
@@ -132,5 +147,16 @@ class _HomeEkranState extends State<HomeEkran> {
             color: Colors.white,
           ),
         ));
+  }
+
+  void _onLetterSelect(String letter) {
+    final List<UserModel3> users = context.read<GetUserCubit>().state;
+    final index = users.indexWhere(
+        (user) => user.userName.toLowerCase().startsWith(letter.toLowerCase()));
+    if (index != -1) {
+      final ScrollController controller = PrimaryScrollController.of(context);
+      const double itemExtent = 80; // ListTile height
+      controller.jumpTo(index * itemExtent);
+    }
   }
 }
